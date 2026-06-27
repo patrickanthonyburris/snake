@@ -1,6 +1,7 @@
 # Executables
 snake
 *.exe
+*.out
 
 # Object files
 *.o
