@@ -5,7 +5,10 @@
 game::game(int height, int width) : 
 	height(height),
 	width(width),
-	game_board(height, std::vector<space>(width)) {}
+	game_board(height, std::vector<space>(width)) {
+	
+	place_apples();
+	}
 
 char game::get_move() {
 	std::cout << "Which way move?\n";
@@ -29,6 +32,16 @@ void game::move_snake() {
 	}
 }
 
+void game::place_apples() {
+	for(int i = 0; i < this->height; i++) {
+		int row = rand() % this->height;
+		int col = rand() % this->width;
+
+		space& sp = game_board.at(row).at(col);
+		sp.set_apple();
+	}
+}
+
 void game::display_game() {
 	std::string row_border = "+";
 	for(int i = 0; i < width; i++) {
@@ -40,6 +53,8 @@ void game::display_game() {
 		for(int j = 0; j < width; j++) {
 			if(s.get_row() == i && s.get_col() == j) {
 				std::cout << "*";
+			} else if(game_board[i][j].get_apple_status()) {
+				std::cout << "a";
 			} else {
 				std::cout << " ";
 			}

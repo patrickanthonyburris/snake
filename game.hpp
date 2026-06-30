@@ -17,6 +17,7 @@ public:
 	game(int height, int width);
 	char get_move();
 	void move_snake();
+	void place_apples();
 	void display_game();
 	void play_game();
 
