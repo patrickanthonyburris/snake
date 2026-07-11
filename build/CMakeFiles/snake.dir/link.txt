@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/snake.dir/link.d CMakeFiles/snake.dir/main.cpp.o CMakeFiles/snake.dir/snake.cpp.o CMakeFiles/snake.dir/game.cpp.o CMakeFiles/snake.dir/space.cpp.o -o snake  -lraylib -lGL -lm -lpthread -ldl -lrt -lX11

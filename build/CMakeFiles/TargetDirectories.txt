@@ -1,3 +1,0 @@
-/home/pburris/projects/snake/build/CMakeFiles/snake.dir
-/home/pburris/projects/snake/build/CMakeFiles/edit_cache.dir
-/home/pburris/projects/snake/build/CMakeFiles/rebuild_cache.dir
