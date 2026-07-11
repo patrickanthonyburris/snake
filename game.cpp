@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "game.hpp"
+#include "raylib.h"
 
 game::game(int height, int width) : 
 	height(height),
@@ -43,31 +44,24 @@ void game::place_apples() {
 }
 
 void game::display_game() {
-	std::string row_border = "+";
-	for(int i = 0; i < width; i++) {
-		row_border += "--+";
-	}
-	
-	for(int i = 0; i < height; i++) {
-		std::cout << row_border << "\n|";
-		for(int j = 0; j < width; j++) {
-			if(s.get_row() == i && s.get_col() == j) {
-				std::cout << "*";
-			} else if(game_board[i][j].get_apple_status()) {
-				std::cout << "a";
-			} else {
-				std::cout << " ";
-			}
-			std::cout << " |";
-		}
-		std::cout << "\n";
-	}
-	std::cout << row_border << "\n";
+	BeginDrawing();
+
+	ClearBackground(BLACK);
+
+	//draw snake
+
+	//draw food
+
+	EndDrawing();
 }
 
 void game::play_game() {
-	for(int i = 0; i < 10; i++) {
-	this->display_game();
-	this->move_snake();
+	InitWindow(750,750, "SNAKE");
+	SetTargetFPS(60);
+	while(!WindowShouldClose()) {
+		this->display_game();
+		//this->move_snake();
 	}
+	std::cout << "GAME OVER!";
+	CloseWindow();
 }
