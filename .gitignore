@@ -30,3 +30,7 @@ snake
 
 # Linux
 *~
+
+# Vim Swap Files
+*.swp
+*.swo
