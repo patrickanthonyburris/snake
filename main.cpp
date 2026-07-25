@@ -6,7 +6,7 @@
 int main () {
 	srand(time(nullptr));
 
-	game g(5, 5);
+	game g;
 	g.play_game(); 
 	return 0;
 }

@@ -3,52 +3,32 @@
 #include "game.hpp"
 #include "raylib.h"
 
-game::game(int height, int width) : 
-	height(height),
-	width(width),
-	game_board(height, std::vector<space>(width)) {
-	
-	place_apples();
-	}
-
-char game::get_move() {
-	std::cout << "Which way move?\n";
-	char move;
-	std::cin >> move;
-	return move;
-}
-
-void game::move_snake() {
-	char move = get_move();
-	if(move == 'w') {
+void game::update(int* key_pressed) {
+	if(IsKeyPressed(KEY_W) || *key_pressed == KEY_W) {
 		s.move_up();
-	} else if(move == 's') {
+		*key_pressed = KEY_W;
+	}
+	if(IsKeyPressed(KEY_A) || *key_pressed == KEY_A) {
 		s.move_down();
-	} else if(move == 'a') {
+		*key_pressed = KEY_A;
+	}
+	if(IsKeyPressed(KEY_S) || *key_pressed == KEY_S) {
 		s.move_left();
-	} else if(move == 'd') {
+		*key_pressed = KEY_S;
+	}
+	if(IsKeyPressed(KEY_D) || *key_pressed == KEY_D) {
 		s.move_right();
-	} else { 
-		std::cout << "Invalid!\n";
+		*key_pressed = KEY_D;
 	}
 }
-
-void game::place_apples() {
-	for(int i = 0; i < this->height; i++) {
-		int row = rand() % this->height;
-		int col = rand() % this->width;
-
-		space& sp = game_board.at(row).at(col);
-		sp.set_apple();
-	}
-}
-
 void game::display_game() {
 	BeginDrawing();
 
 	ClearBackground(BLACK);
 
 	//draw snake
+	//DrawRectangle(s.get_x(), s.get_y(), 50, 50, GREEN);
+	s.draw_snake();
 
 	//draw food
 
@@ -56,11 +36,12 @@ void game::display_game() {
 }
 
 void game::play_game() {
-	InitWindow(750,750, "SNAKE");
+	InitWindow(640,480, "SNAKE");
 	SetTargetFPS(60);
+	int key_pressed = 0;
 	while(!WindowShouldClose()) {
+		this->update(&key_pressed);
 		this->display_game();
-		//this->move_snake();
 	}
 	std::cout << "GAME OVER!";
 	CloseWindow();
